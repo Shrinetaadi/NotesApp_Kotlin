@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="search">Search....</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add">add</string>
+    <string name="notes_title">Notes Title</string>
+    <string name="notes_sub_title">Notes Sub Title</string>
+    <string name="enter_note_here">Enter Note Here...</string>
+    <string name="new_note">New Note</string>
+    <string name="storage_permission">This app requires storage permissions</string>
+    <string name="my_note">My Note</string>
+    <string name="ok">OK</string>
+    <string name="add_checkbox">Add CheckBox</string>
+    <string name="add_link">Add Link</string>
+    <string name="add_image">Add Image</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">CANCEL</string>
+    <string name="https">https://</string>
+</resources>
