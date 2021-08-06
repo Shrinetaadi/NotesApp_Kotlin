@@ -131,6 +131,7 @@
                     android:layout_height="@dimen/_24sdp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_5sdp"
                     android:padding="@dimen/_3sdp"
                     android:src="@drawable/ic_close"
                     android:translationZ="@dimen/_3sdp" />

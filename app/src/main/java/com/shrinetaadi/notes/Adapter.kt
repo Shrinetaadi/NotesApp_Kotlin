@@ -1,6 +1,7 @@
 package com.shrinetaadi.notes
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -59,13 +60,16 @@ class Adapter() : RecyclerView.Adapter<Adapter.NotesViewHolder>() {
                 listener!!.onClicked(list[position].id!!)
             } else {
                 if (list[position].selected) {
-                    holder.itemView.setBackgroundResource(R.drawable.bg_search)
-                    list[position].selected = false
+                    holder.itemView.crdViewHome.foreground = null
                     selectedList.remove(list[position])
+                    list[position].selected = false
+
                 } else if (!(list[position].selected)) {
-                    holder.itemView.setBackgroundResource(R.drawable.bg_selected)
-                    list[position].selected = true
+                    holder.itemView.crdViewHome.foreground =
+                        holder.itemView.context.getDrawable(R.drawable.bg_selected)
                     selectedList.add(list[position])
+                    list[position].selected = true
+
                 }
                 listener!!.onLongClick(selectedList)
             }
@@ -74,11 +78,14 @@ class Adapter() : RecyclerView.Adapter<Adapter.NotesViewHolder>() {
         holder.itemView.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(v: View?): Boolean {
                 if (selectedList.isEmpty()) {
-                    holder.itemView.setBackgroundResource(R.drawable.bg_selected)
-                    list[position].selected = true
+                    holder.itemView.crdViewHome.foreground =
+                        holder.itemView.context.getDrawable(R.drawable.bg_selected)
                     selectedList.add(list[position])
+                    list[position].selected = true
+
+
+                    listener!!.onLongClick(selectedList)
                 }
-                listener!!.onLongClick(selectedList)
                 return true
             }
 

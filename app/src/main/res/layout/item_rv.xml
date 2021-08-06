@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/darkBlack"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -10,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
-        android:padding="@dimen/_10sdp"
         app:cardBackgroundColor="@color/lightBlack"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp">
@@ -20,64 +20,70 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/_10sdp">
+          >
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/imgItemNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="-1dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_image"
                 android:visibility="gone"
                 app:riv_corner_radius_top_left="@dimen/_10sdp"
                 app:riv_corner_radius_top_right="@dimen/_10sdp" />
 
-
-            <TextView
-                android:id="@+id/txtItemNoteTitle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:gravity="center_vertical"
-                android:text="@string/my_note"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15ssp" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
 
-            <TextView
-                android:id="@+id/txtItemWebLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/_5sdp"
-                android:text="@string/my_note"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/_11ssp"
-                android:visibility="gone" />
+                <TextView
+                    android:id="@+id/txtItemNoteTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:gravity="center_vertical"
+                    android:text="@string/my_note"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
 
-            <TextView
-                android:id="@+id/txtItemNoteDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/_5sdp"
-                android:text="@string/my_note"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_11ssp" />
+                <TextView
+                    android:id="@+id/txtItemWebLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:text="@string/my_note"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/txtItemDateTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunitobold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/_5sdp"
-                android:text="@string/my_note"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_11ssp" />
+                <TextView
+                    android:id="@+id/txtItemNoteDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:text="@string/my_note"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp" />
 
+                <TextView
+                    android:id="@+id/txtItemDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:text="@string/my_note"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp" />
 
+            </LinearLayout>
         </LinearLayout>
 
 

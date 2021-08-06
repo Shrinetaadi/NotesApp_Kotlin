@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        imgDeleteSelected.visibility = View.GONE
+        llMenus.visibility = View.GONE
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -54,7 +54,9 @@ class HomeFragment : BaseFragment() {
                 val notes = NotesDatabase.getDatabase(it).noteDao().allNotes()
                 notesAdapter.saveData(notes)
                 listNotes = notes as ArrayList<Notes>
+                notesAdapter.selectedList.clear()
                 recyclerView.adapter = notesAdapter
+
 
             }
         }
@@ -68,6 +70,22 @@ class HomeFragment : BaseFragment() {
 
             replaceFragment(fragment, true)
         }
+        imgCancelSelected.setOnClickListener {
+            selectedList.clear()
+            launch {
+                context?.let {
+                    val notes = NotesDatabase.getDatabase(it).noteDao().allNotes()
+                    notesAdapter.saveData(notes)
+                    recyclerView.adapter = notesAdapter
+                }
+            }
+            notesAdapter.notifyDataSetChanged()
+            llMenus.setVisibility(false)
+            txtAppName.setVisibility(true)
+
+        }
+
+
         imgDeleteSelected.setOnClickListener {
             for (arr in selectedList) {
 
@@ -89,27 +107,30 @@ class HomeFragment : BaseFragment() {
 
 
 
-        mainSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val tempArr = ArrayList<Notes>()
-
-                for (arr in listNotes) {
-                    if (arr.title!!.toLowerCase(Locale.getDefault()).contains(newText.toString())) {
-                        tempArr.add(arr)
-                    }
+        mainSearchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
                 }
 
-                notesAdapter.saveData(tempArr)
-                notesAdapter.notifyDataSetChanged()
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    val tempArr = ArrayList<Notes>()
 
-                return true
-            }
+                    for (arr in listNotes) {
+                        if (arr.title!!.toLowerCase(Locale.getDefault())
+                                .contains(newText.toString())
+                        ) {
+                            tempArr.add(arr)
+                        }
+                    }
 
-        })
+                    notesAdapter.saveData(tempArr)
+                    notesAdapter.notifyDataSetChanged()
+
+                    return true
+                }
+
+            })
 
     }
 
@@ -126,10 +147,22 @@ class HomeFragment : BaseFragment() {
 
         override fun onLongClick(list: ArrayList<Notes>) {
             selectedList = list
+
             if (selectedList.isNotEmpty()) {
-                imgDeleteSelected.setVisibility(true)
+                val size = selectedList.size
+                if (size == 1) {
+                    txtSelectedNo.text = "${size} item is selected"
+                } else {
+                    txtSelectedNo.text = "${size} items are selected"
+                }
+
+
+                llMenus.setVisibility(true)
+                txtAppName.setVisibility(false)
+
             } else {
-                imgDeleteSelected.setVisibility(false)
+                llMenus.setVisibility(false)
+                txtAppName.setVisibility(true)
             }
         }
 
